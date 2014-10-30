@@ -1,0 +1,10 @@
+builder = {};
+builder.type = 'randpath';
+builder.maxEdges = 15;
+builder.minEdges = 4;
+builder.minTurnAngle = pi / 3;
+builder.maxAngleWeight = 3;
+builder.minAngleWeight = 1;
+builder.startIndices = [];
+builder.map = 'config/maps/default.mat';
+save('config/path_builders/randpath.mat', '-struct', 'builder');

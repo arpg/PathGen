@@ -1,0 +1,10 @@
+modifier = {};
+modifier.type = 'sigmoid';
+modifier.name = 'snake';
+modifier.sampleRate = 150;
+modifier.amplitude  = 0.5;
+modifier.period     = 1;
+modifier.verShift   = 0;
+modifier.horShift   = pi / 2;
+modifier.direction  = [ 0; 1; 0 ];
+save('config/curve_modifiers/snake', '-struct', 'modifier');

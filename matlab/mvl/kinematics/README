@@ -1,0 +1,41 @@
+
+Here are "Kinematic" functions for preforming spatial operations on 3D objects.
+These kinematic functions support arbitraty composition of spatial relations,
+allowing easy determination of the pose of an object in a coordinate frame
+of interest.  This is useful in particular in many robotics applications
+- e.g.  manipulatior kinematics, localization, mapping, SLAM, target tracking,
+simulation etc. etc.
+
+Objects are represented by their pose.  A pose vector is an entity comprised of
+a 3D Cartesian position and an orientation.  Orientation can be represented
+using either Euler angles, quaternions, axis-angle, or rodrigues-parameters,
+etc.
+
+Composition of poses is supported via the "compound" and "inverse" operators.
+The primary benefit of thinking in terms of operations on spatial relations is the
+intuitive appeal, and the fact that the underlying linear-algebra does not need
+to be considered over and over again.
+
+However, one may wish to stick with homogeneous representations, which are also
+easy to work with.
+
+Many plant and sensor models can be written in terms of compound and inverse
+operators.  Hence, the Jacobian of the compound and inverse operators are also
+implemented.  These Jacobians are needed in many places - e.g. linear error
+propagation, Kalman filtering applications, least squares normal equations,
+non-linear optimization, etc.
+
+A pose always has 6 degrees of freedom, though it may have more elements (i.e. a
+quaternion has 4 parameters to represent 3 degrees of rotational freedom, giving
+a pose vector with 7 elements).  This detail has far reaching consequences.
+For example, it is worth remebering that all 3-parameter representations of
+orintation will have a singularity associated with them (e.g. gimbal-lock for
+Euler angles), and all 4 or more parameter representations are redundant,
+leading to other problems, such as rank deficient covariance matrices.  In
+general there is no one "best" represntation of orientation, and it is often up
+to the engineer to decide what is the right one for the application.
+Personally, I like to use 4x4 homogenous matrices to represent pose globally,
+and then use axis-angle to represent small local changes.  This gets the
+best of both worlds: a non-singular global representation and a minimal
+local represenation (it also has easy relationship to the exponential map).
+
