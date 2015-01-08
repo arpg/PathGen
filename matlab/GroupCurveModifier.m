@@ -26,7 +26,7 @@ classdef GroupCurveModifier < CurveModifier
 
             % modify curve with each modifier
             for i = 1 : count
-                curve = this.modifiers.modify(curve);
+                curve = this.modifiers(i).modify(curve);
             end
         end
     end

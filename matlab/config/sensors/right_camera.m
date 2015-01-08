@@ -1,9 +1,12 @@
 camera = {};
 camera.name = 'Right';
-camera.pose = [ 0.1; -0.2; 0.5; 0; 0; 0 ];
+camera.pose = [ 0.01; -0.02; 0.05; 0; 0.01; -0.005 ];
 camera.frameRate = 60;
 camera.sky = [ 0; 0; -1 ];
 camera.fov = 100;
-camera.imageHeight = 640;
-camera.imageWidth = 480;
+camera.imageHeight = 480;
+camera.imageWidth = 640;
+% camera.model = '/home/robot/Code/RobotGroup/Povray/models/city/City.pov';
+camera.model = 'Calibu.pov';
+camera.outdir = 'images';
 save('config/sensors/right_camera', '-struct', 'camera');

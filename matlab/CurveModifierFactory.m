@@ -26,8 +26,12 @@ classdef CurveModifierFactory < handle
                     modifier = this.createSigmoidModifier(config);
                 case 'waddle'
                     modifier = this.createWaddleModifier(config);
+                case 'closure'
+                    modifier = this.createLoopClosureModifier(config);
                 case 'random'
                     modifier = this.createRandomModifier(config);
+                case 'group'
+                    modifier = this.createGroupModifier(config);
                 otherwise
                     error('''%s'' type not recognized', config.type);
             end
@@ -50,10 +54,15 @@ classdef CurveModifierFactory < handle
             modifier = WaddleCurveModifier;
             modifier.setName(config.name);
             modifier.setSampleRate(config.sampleRate);
-            modifier.setAmplitude(config.amplitude);
             modifier.setPeriod(config.period);
             modifier.setHorizontalShift(config.horShift);
             modifier.setMaxRoll(config.maxRoll);
+        end
+        
+        function modifier = createLoopClosureModifier(config)
+            modifier = LoopClosureCurveModifier;
+            modifier.setName(config.name);
+            modifier.setOverlapTime(config.overlap);
         end
         
         function modifier = createRandomModifier(config)
@@ -62,6 +71,17 @@ classdef CurveModifierFactory < handle
             modifier.setMaxMods(config.maxMods);
             modifier.setMinMods(config.minMods);
             modifier.setReplacement(config.replace);
+            
+            for i = 1 : length(config.modifiers)
+                configfile = config.modifiers{i};
+                submodifier = CurveModifierFactory.create(configfile);
+                modifier.addModifier(submodifier);
+            end
+        end
+        
+        function modifier = createGroupModifier(config)
+            modifier = GroupCurveModifier;
+            modifier.setName(config.name);
             
             for i = 1 : length(config.modifiers)
                 configfile = config.modifiers{i};

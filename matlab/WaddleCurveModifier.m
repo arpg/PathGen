@@ -1,7 +1,6 @@
 classdef WaddleCurveModifier < CurveModifier
 
     properties (Access = private)
-        amplitude;
         period;
         horShift;
         maxRoll;
@@ -9,18 +8,9 @@ classdef WaddleCurveModifier < CurveModifier
 
     methods (Access = public)
         function this = WaddleCurveModifier()
-            this.amplitude = 1;
             this.period    = 1;
             this.horShift  = 0;
             this.maxRoll   = pi / 8;
-        end
-
-        function amplitude = getAmplitude(this)
-            amplitude = this.amplitude;
-        end
-
-        function setAmplitude(this, amplitude)
-            this.amplitude = amplitude;
         end
 
         function period = getPeriod(this)
@@ -53,18 +43,19 @@ classdef WaddleCurveModifier < CurveModifier
             poses = curve.getPoses(times);
             count = size(poses, 2);
             
-            a = this.amplitude;
             b = 2 * pi / this.period;
             c = this.horShift;
             
-            mag = a * sin(b * (times - c));
-            roll =  mag / a * this.maxRoll;
+            mag = sin(b * (times - c));
+            roll =  mag * this.maxRoll;
             
             position = [ zeros(3, count); roll; zeros(2, count) ];
             
             for i = 1 : count
                 poses(1:6, i) = compound_op(poses(:, i), position(:, i));
             end
+            
+            poses = fix_rot_seq(poses);
         end
     end
 

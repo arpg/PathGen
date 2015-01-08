@@ -20,7 +20,7 @@ classdef ArcPathBuilderFactory < handle
 
             % build specified type
             switch config.type
-                case 'standard'
+                case 'open'
                     builder = this.createArcPathBuilder(config);
                 case 'closed'
                     builder = this.createArcClosedPathBuilder(config);

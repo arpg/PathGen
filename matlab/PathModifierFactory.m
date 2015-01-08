@@ -24,6 +24,10 @@ classdef PathModifierFactory < handle
                     modifier = EmptyPathModifier;
                 case 'randspeed'
                     modifier = this.createRandomSpeedModifier(config);
+                case 'reploop'
+                    modifier = this.createRepeatLoopModifier(config);
+                case 'group'
+                    modifier = this.createGroupModifier(config);
                 otherwise
                     error('''%s'' type not recognized', config.type);
             end
@@ -35,6 +39,21 @@ classdef PathModifierFactory < handle
             modifier = RandomSpeedPathModifier;
             modifier.setMaxSpeed(config.maxSpeed);
             modifier.setMinSpeed(config.minSpeed);
+        end
+
+        function modifier = createRepeatLoopModifier(config)
+            modifier = RepeatLoopPathModifier;
+            modifier.setLoopCount(config.loopCount);
+        end
+
+        function modifier = createGroupModifier(config)
+            modifier = GroupPathModifier;
+
+            % create & add each submodifier to group
+            for i = 1 : length(config.modifiers)
+                submodifier = PathModifierFactory.create(config.modifiers{i});
+                modifier.addModifier(submodifier);
+            end
         end
     end
     

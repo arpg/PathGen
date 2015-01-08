@@ -1,0 +1,10 @@
+writer = {};
+writer.type = 'render';
+writer.quality = 9;
+writer.antialias = 'on';
+writer.antialiasThresh = 0.001;
+writer.antialiasDepth = 4;
+writer.samplingMethod = 2;
+writer.cyclicAnimation = 'on';
+writer.pauseWhenDone = 'off';
+save('config/curve_writers/render', '-struct', 'writer');

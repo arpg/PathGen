@@ -1,4 +1,4 @@
-classdef (Abstract) PathModifier < handle
+classdef (Abstract) PathModifier < handle & matlab.mixin.Heterogeneous
 
     properties (Access = protected)
     end
@@ -9,7 +9,13 @@ classdef (Abstract) PathModifier < handle
     end
 
     methods (Access = public, Abstract)
-        modify(this, poses)
+        modify(this, poses);
+    end
+
+    methods (Access = protected, Static, Sealed)
+        function defaultObject = getDefaultScalarElement
+            defaultObject = EmptyPathModifier;
+        end
     end
 
 end

@@ -1,10 +1,6 @@
 modifier = {};
-modifier.type = 'random';
-modifier.name = 'random';
-modifier.maxMods = 2;
-modifier.minMods = 0;
-modifier.replace = false;
+modifier.type = 'group';
+modifier.name = 'group';
 modifier.modifiers{1} = 'config/curve_modifiers/bounce.mat';
 modifier.modifiers{2} = 'config/curve_modifiers/snake.mat';
-modifier.modifiers{3} = 'config/curve_modifiers/waddle.mat';
 save('config/curve_modifiers/default', '-struct', 'modifier');

@@ -76,6 +76,9 @@ classdef MapCurveGraphWriter < CurveGraphWriter
             z = zeros(1, n);
             
             plot3(x, y, z, 'k-', 'LineWidth', 2);
+            
+            plot3(x(1), y(1), z(1), '>', 'MarkerEdgeColor', 'k', ...
+                'MarkerFaceColor', 'g', 'MarkerSize', 10);
         end
         
         function graphPoses(this, curve)

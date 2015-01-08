@@ -82,16 +82,15 @@ classdef ArcPathBuilder < handle
                 if distance > this.EPSILON
                     index = index + 1;
                     segments(index) = Edge(source, target);
+                    source = segments(index).getTarget();
                 end
 
                 % add arc if valid
                 if arcs(i).getAngle() > this.EPSILON
                     index = index + 1;
                     segments(index) = arcs(i);
+                    source = segments(index).getTarget();
                 end
-
-                % update source for next edge
-                source = segments(index).getTarget();
             end
 
             % trim empty cells

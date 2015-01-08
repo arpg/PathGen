@@ -2,17 +2,14 @@ classdef ImuDataWriter < CurveFileWriter
 
     properties (Access = private)
         imu;
-        north;
         precision;
-        
     end
 
     methods (Access = public)
         function this = ImuDataWriter(imu)
             this.imu = imu;
             this.precision = '%10.6f';
-            this.filename = 'imu.csv';
-            this.north = [ 0 1 0 ];
+            this.filename = 'imu/';
         end
 
         function imu = getImu(this)
@@ -37,31 +34,27 @@ classdef ImuDataWriter < CurveFileWriter
             rate = this.imu.getDataRate();
             times = curve.getTimes(rate);
             
-            acc = this.getAccelerationData(curve, times);
-            mag = this.getMagnetometerData(curve, times);
-            data = [ acc mag times' ];
-
-            dlmwrite(this.getFilePath(), data, 'precision', this.precision);
+            accel = this.imu.getAccelerationData(curve, times);
+            gyro = this.imu.getGyroscopeData(curve, times);
+            mag = this.imu.getMagnetometerData(curve, times);
+            
+            filepath = this.getFilePath();
+            
+            if ~exist(filepath, 'dir')
+                mkdir(filepath);
+            end
+            
+            this.writeData('accel.txt', accel);
+            this.writeData('gyro.txt', gyro);
+            this.writeData('mag.txt', mag);
+            this.writeData('timestamp.txt', [ times' times' ]);
         end
     end
 
     methods (Access = private)
-        function data = getAccelerationData(this, curve, times)
-            acc = curve.getAccelerations(times);
-            data = acc(1:6, :)';
-        end
-
-        function data = getMagnetometerData(this, curve, times)
-            poses = curve.getPoses(times);
-            count = size(poses, 2);
-            data = zeros(count, 3);
-            
-            % compute for each pose
-            for i = 1 : count
-                % convert north vector to imu coord space
-                R = eulerPQR_to_rotmat(poses(4:6, i));
-                data(i, 1:3) = this.north * R;
-            end
+        function writeData(this, name, data)
+            filename = strcat(this.getFilePath(), name);
+            dlmwrite(filename, data, 'precision', this.precision);
         end
     end
 

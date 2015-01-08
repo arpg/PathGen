@@ -11,6 +11,8 @@ classdef CameraFactory < handle
             camera.setFieldOfView(config.fov);
             camera.setImageHeight(config.imageHeight);
             camera.setImageWidth(config.imageWidth);
+            camera.setModel(config.model);
+            camera.setOutputDirectory(config.outdir);
         end
     end
     

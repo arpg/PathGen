@@ -22,6 +22,8 @@ classdef CurveWriterFactory < handle
             switch config.type
                 case 'standard'
                     writer = this.createStandardWriter(config);
+                case 'render'
+                    writer = this.createRenderParamWriter(config);
                 case 'mapgraph'
                     writer = this.createMapGraphWriter(config);
                 otherwise
@@ -39,11 +41,16 @@ classdef CurveWriterFactory < handle
             imu = ImuFactory.create(config.imu);
             writer.addWriter(ImuDataWriter(imu));
             
-            % add camera pose writer for each camera
+            cameras = cell(1, length(config.cameras));
+            
+            % add camera writer for each camera
             for i = 1 : length(config.cameras)
-                camera = CameraFactory.create(config.cameras{i});
-                writer.addWriter(CameraPoseWriter(camera));
+                cameras{i} = CameraFactory.create(config.cameras{i});
+                writer.addWriter(CameraWriter(cameras{i}));
             end
+
+            % add cameras json writer
+            writer.addWriter(CamerasJsonWriter(cameras));
 
             % add description writer
             writer.addWriter(CurveDescriptionWriter);
@@ -53,6 +60,17 @@ classdef CurveWriterFactory < handle
                 member = CurveWriterFactory.create(config.writers{i});
                 writer.addWriter(member);
             end
+        end
+        
+        function writer = createRenderParamWriter(config)
+            writer = RenderParamWriter;
+            writer.setQuality(config.quality);
+            writer.setAntialias(config.antialias);
+            writer.setAntialiasThreshold(config.antialiasThresh);
+            writer.setAntialiasDepth(config.antialiasDepth);
+            writer.setSamplingMethod(config.samplingMethod);
+            writer.setCyclicAnimation(config.cyclicAnimation);
+            writer.setPauseWhenDone(config.pauseWhenDone);
         end
         
         function writer = createMapGraphWriter(config)

@@ -8,6 +8,8 @@ classdef Camera < handle
         fov;
         imageHeight;
         imageWidth;
+        model;
+        outdir;
     end
 
     methods (Access = public)
@@ -19,6 +21,8 @@ classdef Camera < handle
             this.fov = 100;
             this.imageHeight = 640;
             this.imageWidth = 480;
+            this.model = 'mymodel.pov';
+            this.outdir = '.';
         end
 
         function name = getName(this)
@@ -75,6 +79,38 @@ classdef Camera < handle
 
         function setImageWidth(this, imageWidth)
             this.imageWidth = imageWidth;
+        end
+
+        function model = getModel(this)
+            model = this.model;
+        end
+
+        function setModel(this, model)
+            this.model = model;
+        end
+
+        function outdir = getOutputDirectory(this)
+            outdir = this.outdir;
+        end
+
+        function setOutputDirectory(this, outdir)
+            this.outdir = outdir;
+        end
+        
+        function poses = getPoses(this, curve)
+            % get list of imu path poses
+            times = curve.getTimes(this.frameRate);
+            pathPoses = curve.getPoses(times);
+
+            % create empty list of camera poses
+            count = size(pathPoses, 2);
+            poses = zeros(6, count);
+
+            % transform each pose
+            for i = 1 : count
+                pathPose = pathPoses(1:6, i);
+                poses(:, i) = tcomp(pathPose, this.pose);
+            end
         end
     end
 

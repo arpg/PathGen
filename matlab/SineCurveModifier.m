@@ -1,4 +1,4 @@
-classdef SigmoidCurveModifier < CurveModifier
+classdef SineCurveModifier < CurveModifier
 
     properties (Access = private)
         amplitude;
@@ -9,7 +9,7 @@ classdef SigmoidCurveModifier < CurveModifier
     end
 
     methods (Access = public)
-        function this = SigmoidCurveModifier()
+        function this = SineCurveModifier()
             this.amplitude = 1;
             this.period    = 1;
             this.verShift  = 0;
@@ -75,6 +75,8 @@ classdef SigmoidCurveModifier < CurveModifier
             for i = 1 : count
                 poses(1:6, i) = compound_op(poses(:, i), position(:, i));
             end
+            
+            poses = fix_rot_seq(poses);
         end
     end
 

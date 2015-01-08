@@ -33,30 +33,8 @@ classdef ArcPath < handle
             end
 
             poses(:, end) = temp(:, end);
-            poses = ArcPath.fixRotation(poses);
+            poses = fix_rot_seq(poses);
         end
-    end
-        
-    methods (Access = private, Static)
-        function poses = fixRotation(poses)
-            % initialize with first pose
-            total = poses(6, 1);                                                   
-                                     
-            % total each subsequent pose
-            for i = 2 : size(poses, 2)                                             
-                a = poses(6, i - 1);                                               
-                b = poses(6, i);                                                   
-                                                                                   
-                diff = mod(b - a, 2 * pi);                                         
-                                                                                   
-                if (diff > pi)                                                     
-                    diff = diff - 2 * pi;                                          
-                end                                                                
-                           
-                total = total + diff;                                              
-                poses(6, i) = total;                                               
-            end
-        end 
     end
 
 end

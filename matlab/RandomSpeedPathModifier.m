@@ -40,7 +40,7 @@ classdef RandomSpeedPathModifier < PathModifier
 
             this.minSpeed = minSpeed;
         end
-    
+        
         function poses = modify(this, poses)
             count = size(poses, 2);
 

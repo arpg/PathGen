@@ -1,4 +1,5 @@
-PathGen =======
+PathGen
+=======
 
 Matlab project for generating povray camera paths.
 

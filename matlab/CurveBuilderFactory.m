@@ -28,6 +28,8 @@ classdef CurveBuilderFactory < handle
                     builder = this.createArcCurveBuilder(config);
                 case 'path'
                     builder = this.createPathBuilderCurveBuilder(config);
+                case 'fig8'
+                    builder = this.createFigure8CurveBuilder(config);
                 otherwise
                     error('''%s'' type not recognized', config.type);
             end
@@ -68,6 +70,17 @@ classdef CurveBuilderFactory < handle
             
             curveBuilder = CurveBuilderFactory.create(config.curveBuilder);
             builder.setPathCurveBuilder(curveBuilder);
+        end
+        
+        function builder = createFigure8CurveBuilder(config)
+            builder = Figure8CurveBuilder;
+            builder.setSampleRate(config.sampleRate);
+            builder.setWidth(config.width);
+            builder.setHeight(config.height);
+            builder.setSpeed(config.speed);
+            builder.setXOffset(config.xOffset);
+            builder.setYOffset(config.yOffset);
+            builder.setZOffset(config.zOffset);
         end
 
         function poses = loadPath(config)

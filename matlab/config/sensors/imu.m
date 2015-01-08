@@ -1,3 +1,3 @@
 imu = {};
-imu.dataRate = 100;
+imu.dataRate = 200;
 save('config/sensors/imu', '-struct', 'imu');
