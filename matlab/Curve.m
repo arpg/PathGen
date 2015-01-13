@@ -38,7 +38,7 @@ classdef Curve < handle
             times = 0 : 1 / rate : this.duration;
         end
 
-        function poses = getPoses(this, times)
+        function poses = getPoses(this, times) 
             poses = ppval(this.poseFunc, times);
         end
 

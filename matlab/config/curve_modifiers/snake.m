@@ -1,5 +1,5 @@
 modifier = {};
-modifier.type = 'sigmoid';
+modifier.type = 'sine';
 modifier.name = 'snake';
 modifier.sampleRate = 150;
 modifier.amplitude  = 0.3;

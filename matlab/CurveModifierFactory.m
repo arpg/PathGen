@@ -22,8 +22,8 @@ classdef CurveModifierFactory < handle
             switch config.type
                 case 'empty'
                     modifier = EmptyCurveModifier;
-                case 'sigmoid'
-                    modifier = this.createSigmoidModifier(config);
+                case 'sine'
+                    modifier = this.createSineModifier(config);
                 case 'waddle'
                     modifier = this.createWaddleModifier(config);
                 case 'closure'
@@ -39,8 +39,8 @@ classdef CurveModifierFactory < handle
     end
 
     methods (Access = public, Static)
-        function modifier = createSigmoidModifier(config)
-            modifier = SigmoidCurveModifier;
+        function modifier = createSineModifier(config)
+            modifier = SineCurveModifier;
             modifier.setName(config.name);
             modifier.setSampleRate(config.sampleRate);
             modifier.setAmplitude(config.amplitude);
