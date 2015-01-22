@@ -4,7 +4,7 @@ builder.sampleRate = 100;
 builder.width = 0.5;
 builder.height = 0.5;
 builder.speed = 0.5;
-builder.xOffset = -0.6;
+builder.xOffset = -0.45;
 builder.yOffset = 0;
 builder.zOffset = 0;
 save('config/curve_builders/figure8', '-struct', 'builder');
