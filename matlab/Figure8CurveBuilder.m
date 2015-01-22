@@ -95,7 +95,7 @@ classdef Figure8CurveBuilder < PathCurveBuilder
             t = t(1:n);
 
             % poses = [0.5 * sin(4*t); 2 * sin(t); sin(2 * t); 0.5 * sin(2 * t); zeros(2, n)];
-            poses = [0.1 * sin(4*t); 0.5 * sin(t); 0.25 * sin(2 * t); 0.5 * sin(2 * t); zeros(2, n)];
+            poses = [0.05 * sin(4*t); 0.25 * sin(t); 0.125 * sin(2 * t); 0.5 * sin(2 * t); zeros(2, n)];
             
             poses(1, :) = poses(1, :) + this.xOffset;
             poses(2, :) = poses(2, :) + this.yOffset;

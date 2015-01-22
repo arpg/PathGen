@@ -40,15 +40,34 @@ classdef Imu < handle
             poses = curve.getPoses(times);
             count = length(times);
             
+            scalar = 0.01;
+            figure;
+            plot3(poses(1,:), poses(2,:), poses(3,:), '.');
+            axis equal;
+            hold on
             % add gravity acceleration
             for i = 1 : count
-                rotmat = eulerPQR_to_rotmat(poses(4:6, i));
-                gravity = rotmat * [ 0; 0; 1 ];
-                acc(1:3, i) = acc(1:3, i) / 9.8 + gravity;
+                r_wo = eulerPQR_to_rotmat(poses(4:6, i));
+                
+                x_axis = [poses(1:3, i)'; poses(1:3, i)' + ...
+                    scalar * r_wo(:, 1)'];
+                plot3(x_axis(:, 1), x_axis(:, 2), x_axis(:, 3), 'r-');
+                
+                y_axis = [poses(1:3, i)'; poses(1:3, i)' + ...
+                    scalar * r_wo(:, 2)'];
+                plot3(y_axis(:, 1), y_axis(:, 2), y_axis(:, 3), 'g-');
+                
+                z_axis = [poses(1:3, i)'; poses(1:3, i)' + ...
+                    scalar * r_wo(:, 3)'];
+                plot3(z_axis(:, 1), z_axis(:, 2), z_axis(:, 3), 'b-');
+                
+                g_o = [ 0; 0; 9.8007 ];
+                acc(1:3, i) = r_wo' * (acc(1:3, i) + g_o);
             end
             
             % swap column orders (x, y, z) -> (y, z, x)
-            data = [ acc(2:3, :); acc(1, :) ]';
+            % data = [ acc(2:3, :); acc(1, :) ]';
+            data = [ acc(1:3, :) ]';
         end
         
         function data = getGyroscopeData(this, curve, times)
@@ -63,7 +82,8 @@ classdef Imu < handle
             end
             
             % swap column orders (x, y, z) -> (y, z, x)
-            data = [ data(2:3, :); data(1, :) ]';
+            % data = [ data(2:3, :); data(1, :) ]';
+            data = [ data(1:3, :) ]';
         end
 
         function data = getMagnetometerData(this, curve, times)
