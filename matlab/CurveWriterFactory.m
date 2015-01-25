@@ -41,6 +41,12 @@ classdef CurveWriterFactory < handle
             imu = ImuFactory.create(config.imu);
             writer.addWriter(ImuDataWriter(imu));
             
+            if isfield(config, 'vicon')
+                % add vicon data writer
+                vicon = ViconFactory.create(config.vicon);
+                writer.addWriter(ViconDataWriter(vicon));
+            end
+            
             cameras = cell(1, length(config.cameras));
             
             % add camera writer for each camera

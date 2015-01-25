@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<KinematicModel VERSION="2.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.vicon.com/Schemas/ViconVST.xsd">
+
+  <Parameters>
+    <Parameter HIDDEN="1" NAME="ViconTarget_Unlabeled27324_x" PRIOR="-1687.42956542969" SD="1.00000002004088e+020" VALUE="-1687.42956542969"/>
+    <Parameter HIDDEN="1" NAME="ViconTarget_Unlabeled27324_y" PRIOR="2451.05395507813" SD="1.00000002004088e+020" VALUE="2451.05395507813"/>
+    <Parameter HIDDEN="1" NAME="ViconTarget_Unlabeled27324_z" PRIOR="78.0425415039063" SD="1.00000002004088e+020" VALUE="78.0425415039063"/>
+    <Parameter HIDDEN="1" NAME="ViconTarget_Unlabeled27326_x" PRIOR="-864.857421875" SD="1.00000002004088e+020" VALUE="-864.857421875"/>
+    <Parameter HIDDEN="1" NAME="ViconTarget_Unlabeled27326_y" PRIOR="2391.19799804688" SD="1.00000002004088e+020" VALUE="2391.19799804688"/>
+    <Parameter HIDDEN="1" NAME="ViconTarget_Unlabeled27326_z" PRIOR="76.5550994873047" SD="1.00000002004088e+020" VALUE="76.5550994873047"/>
+    <Parameter HIDDEN="1" NAME="ViconTarget_Unlabeled27328_x" PRIOR="-911.068481445313" SD="1.00000002004088e+020" VALUE="-911.068481445313"/>
+    <Parameter HIDDEN="1" NAME="ViconTarget_Unlabeled27328_y" PRIOR="1822.28955078125" SD="1.00000002004088e+020" VALUE="1822.28955078125"/>
+    <Parameter HIDDEN="1" NAME="ViconTarget_Unlabeled27328_z" PRIOR="79.272102355957" SD="1.00000002004088e+020" VALUE="79.272102355957"/>
+    <Parameter HIDDEN="1" NAME="ViconTarget_Unlabeled29695_x" PRIOR="-1277.80139160156" SD="1.00000002004088e+020" VALUE="-1277.80139160156"/>
+    <Parameter HIDDEN="1" NAME="ViconTarget_Unlabeled29695_y" PRIOR="2419.84716796875" SD="1.00000002004088e+020" VALUE="2419.84716796875"/>
+    <Parameter HIDDEN="1" NAME="ViconTarget_Unlabeled29695_z" PRIOR="76.9104156494141" SD="1.00000002004088e+020" VALUE="76.9104156494141"/>
+    <Parameter HIDDEN="1" NAME="ViconTarget_Unlabeled29697_x" PRIOR="-1729.517578125" SD="1.00000002004088e+020" VALUE="-1729.517578125"/>
+    <Parameter HIDDEN="1" NAME="ViconTarget_Unlabeled29697_y" PRIOR="1884.981567738281" SD="1.00000002004088e+020" VALUE="1884.981567738281"/>
+    <Parameter HIDDEN="1" NAME="ViconTarget_Unlabeled29697_z" PRIOR="81.1418304443359" SD="1.00000002004088e+020" VALUE="81.1418304443359"/>
+  </Parameters>
+
+  <Skeleton>
+    <Segment BOUNDS="-50 -50 -50 50 50 50 " CONTEXT="General" INERTIA="0 0 0 " MASS="0 " MASS-CENTRE="0 0 0 " NAME="ViconTarget" RGB="255 164 0">
+      <JointFree BOUNDS="0 0 0 0 0 0 0 0 0 0 0 0" COVARIANCE="2.46490001678467 0 0 0 0 0  0 2.46490001678467 0 0 0 0  0 0 246.490005493164 0 0 0  0 0 0 1000000 0 0  0 0 0 0 1000000 0  0 0 0 0 0 1000000  " MEAN="0 0 0 0 0 0" NAME="World_ViconTarget" POST-ORIENTATION="0 0 0" POST-POSITION="0 0 0" PRE-ORIENTATION="0 0 0" PRE-POSITION="0 0 0" SIGNS="+ + + + + + " T="* * * * * * ">
+        <JoinTemplate COVARIANCE="2.46490001678467 0 0 0 0 0  0 2.46490001678467 0 0 0 0  0 0 246.490005493164 0 0 0  0 0 0 1000000 0 0  0 0 0 0 1000000 0  0 0 0 0 0 1000000  " MEAN="0 0 0 0 0 0" POST-ORIENTATION="0 0 0" POST-POSITION="0 0 0" PRE-ORIENTATION="0 0 0 " PRE-POSITION="0 0 0 " TPOSE-COVARIANCE="0.100000001490116 0 0 0 0 0  0 0.100000001490116 0 0 0 0  0 0 0.100000001490116 0 0 0  0 0 0 0.100000001490116 0 0  0 0 0 0 0.100000001490116 0  0 0 0 0 0 0.100000001490116  " TPOSE-MEAN="0 0 0 0 0 0"/>
+      </JointFree>
+    </Segment>
+  </Skeleton>
+  
+  <MarkerSet>
+    <Markers>
+      <Marker COVARIANCE="1 0 0 0 1 0 0 0 1 " NAME="Unlabeled27324" POSITION="-1687.43 2451.05 78.0425" RADIUS="12.5" RGB="255 164 0" SEGMENT="ViconTarget" STATUS="required">
+        <MarkerTemplate COVARIANCE="1 0 0 0 1 0 0 0 1 " PLACEMENT-COVARIANCE="1 0 0 0 1 0 0 0 1 " POSITION="'ViconTarget_Unlabeled27324_x' 'ViconTarget_Unlabeled27324_y' 'ViconTarget_Unlabeled27324_z'"/>
+      </Marker>
+      <Marker COVARIANCE="1 0 0 0 1 0 0 0 1 " NAME="Unlabeled27326" POSITION="-864.857 2391.2 76.5551" RADIUS="12.5" RGB="255 164 0" SEGMENT="ViconTarget" STATUS="optional">
+        <MarkerTemplate COVARIANCE="1 0 0 0 1 0 0 0 1 " PLACEMENT-COVARIANCE="1 0 0 0 1 0 0 0 1 " POSITION="'ViconTarget_Unlabeled27326_x' 'ViconTarget_Unlabeled27326_y' 'ViconTarget_Unlabeled27326_z'"/>
+      </Marker>
+      <Marker COVARIANCE="1 0 0 0 1 0 0 0 1 " NAME="Unlabeled27328" POSITION="-911.068 1822.29 79.2721" RADIUS="12.5" RGB="255 164 0" SEGMENT="ViconTarget" STATUS="optional">
+        <MarkerTemplate COVARIANCE="1 0 0 0 1 0 0 0 1 " PLACEMENT-COVARIANCE="1 0 0 0 1 0 0 0 1 " POSITION="'ViconTarget_Unlabeled27328_x' 'ViconTarget_Unlabeled27328_y' 'ViconTarget_Unlabeled27328_z'"/>
+      </Marker>
+      <Marker COVARIANCE="1 0 0 0 1 0 0 0 1 " NAME="Unlabeled29695" POSITION="-1277.8 2419.85 76.9104" RADIUS="12.5" RGB="255 164 0" SEGMENT="ViconTarget" STATUS="optional">
+        <MarkerTemplate COVARIANCE="1 0 0 0 1 0 0 0 1 " PLACEMENT-COVARIANCE="1 0 0 0 1 0 0 0 1 " POSITION="'ViconTarget_Unlabeled29695_x' 'ViconTarget_Unlabeled29695_y' 'ViconTarget_Unlabeled29695_z'"/>
+      </Marker>
+      <Marker COVARIANCE="1 0 0 0 1 0 0 0 1 " NAME="Unlabeled29697" POSITION="-1729.52 1884.98 81.1418" RADIUS="12.5" RGB="255 164 0" SEGMENT="ViconTarget" STATUS="optional">
+        <MarkerTemplate COVARIANCE="1 0 0 0 1 0 0 0 1 " PLACEMENT-COVARIANCE="1 0 0 0 1 0 0 0 1 " POSITION="'ViconTarget_Unlabeled29697_x' 'ViconTarget_Unlabeled29697_y' 'ViconTarget_Unlabeled29697_z'"/>
+      </Marker>
+    </Markers>
+    <Sticks>
+      <Stick MARKER1="Unlabeled27324" MARKER2="Unlabeled27326" RGB="255 164 0"/>
+      <Stick MARKER1="Unlabeled27324" MARKER2="Unlabeled27328" RGB="255 164 0"/>
+      <Stick MARKER1="Unlabeled27324" MARKER2="Unlabeled29695" RGB="255 164 0"/>
+      <Stick MARKER1="Unlabeled27324" MARKER2="Unlabeled29697" RGB="255 164 0"/>
+      <Stick MARKER1="Unlabeled27326" MARKER2="Unlabeled27328" RGB="255 164 0"/>
+      <Stick MARKER1="Unlabeled27326" MARKER2="Unlabeled29595" RGB="255 164 0"/>
+      <Stick MARKER1="Unlabeled27326" MARKER2="Unlabeled29597" RGB="255 164 0"/>
+      <Stick MARKER1="Unlabeled27328" MARKER2="Unlabeled29595" RGB="255 164 0"/>
+      <Stick MARKER1="Unlabeled27328" MARKER2="Unlabeled29597" RGB="255 164 0"/>
+      <Stick MARKER1="Unlabeled29595" MARKER2="Unlabeled29597" RGB="255 164 0"/>
+    </Sticks>
+  </MarkerSet>
+  
+  <Alignment/>
+  
+</KinematicModel>
