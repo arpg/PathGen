@@ -49,7 +49,7 @@ classdef CameraWriter < CurveFileWriter
             fprintf(fout, '\tsky < %s[clock][6], ', path);
             fprintf(fout, '%s[clock][7], %s[clock][8] >\n', path, path);
             fprintf(fout, '\tright <-1.33, 0, 0>\n');
-            fprintf(fout, '\tangle 100\n');
+            fprintf(fout, '\tangle %f\n', this.camera.getFieldOfView());
             fprintf(fout, '}\n');
             fprintf(fout, '\n');
             fprintf(fout, '#include "%s"', this.camera.getModel());
