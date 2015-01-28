@@ -1,5 +1,5 @@
 function genpaths(count, generator)
-    
+    addpath(genpath('mvl'));
     processInput(nargin);
     
     for i = 1 : count
