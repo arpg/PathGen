@@ -123,8 +123,26 @@ classdef CameraWriter < CurveFileWriter
             
             % write file content
             fprintf(fout, '#!/bin/bash\n\n');
-            fprintf(fout, 'povray %s.ini %s.pov -O"%s/%s-"', cameraName, ...
+            fprintf(fout, 'povray %s.ini %s.pov -O"%s/%s-"\n\n', cameraName, ...
                 cameraName, this.camera.getOutputDirectory(), cameraName);
+            
+            % add renaming commands
+            name = this.camera.getName();                                                   
+            rate = this.camera.getFrameRate();                                              
+                                                                                
+            fprintf(fout, 'fps=%d\n\n', rate);                                              
+            fprintf(fout, 'rm -rf pgm\n');                                                  
+            fprintf(fout, 'mkdir pgm\n');                                                   
+            fprintf(fout, 'convert images/*.png pgm/%s-%%04d.pgm\n', name);                 
+            fprintf(fout, 'rm pgm/%s-0000.pgm\n\n', name);                                  
+            fprintf(fout, 'FILES=`ls pgm/%s-*`\n\n', name);                                            
+            fprintf(fout, 'for FILE in $FILES; do\n');                                      
+            fprintf(fout, '  NUM=$(echo "$FILE" | sed "s/pgm\\/%s-0*\\(.*\\)\\.pgm/\\1/g")\n', name); 
+            fprintf(fout, '  SEC=$(echo "scale=6; ($NUM - 1) * (1 / $fps)" | bc -l)\n');    
+            fprintf(fout, '  SEC=$(echo "x=$SEC; if (x < 1) print 0; if (x < 10) print 0; x" | bc -l)\n');
+            fprintf(fout, '  mv $FILE pgm/%s-$SEC.pgm\n', name);                        
+            fprintf(fout, 'done\n\n');                                                      
+            fprintf(fout, 'mv pgm/%s-000.pgm pgm/%s-00.000000.pgm', name, name); 
             
             % close output file
             fclose(fout);
